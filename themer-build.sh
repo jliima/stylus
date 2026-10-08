@@ -10,7 +10,7 @@ if ! command -v npx >/dev/null && [[ -s "${NVM_DIR:-$HOME/.nvm}/nvm.sh" ]]; then
 fi
 # The pnpm version package.json pins (corepack 0.24 cannot start pnpm 12).
 pnpm() {
-  if command -v pnpm >/dev/null; then command pnpm "$@"
+  if type -P pnpm >/dev/null; then command pnpm "$@"
   else npx --yes "$(node -p "require('./package.json').packageManager.split('+')[0]")" "$@"; fi
 }
 [[ -d node_modules ]] || pnpm install
