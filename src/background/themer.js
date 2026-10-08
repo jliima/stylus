@@ -252,7 +252,8 @@ function connect() {
     setTimeout(connect, retryDelay);
     retryDelay = Math.min(retryDelay * 2, RETRY_MAX);
   });
-  port.postMessage({type: 'hello', app: 'stylus', styles: prefs.__values[pThemerStyles], moves: true});
+  const styles = prefs.__values[pThemerStyles];
+  port.postMessage({type: 'hello', app: 'stylus', styles, moves: true});
 }
 
 if (chrome.runtime.connectNative) {
