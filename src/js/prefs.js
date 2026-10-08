@@ -34,6 +34,7 @@ const defaults = {
   [pExposeIframes + '.sites']: '',
   [pExposeIframes + '.sitesOnly']: false,
   'exposeStyleName': false,       // Add style name to the style for better devtools experience
+  'themer.styles': true,          // mirror UserCSS styles to Themer's styles folder (background/themer.js)
   'keepAlive': 0,                 // in minutes
   'keepAliveIdle': false,         // keep alive an idle browser
   'newStyleAsUsercss': false,     // create new style in usercss format

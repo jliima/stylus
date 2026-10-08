@@ -15,12 +15,13 @@ import {tabCache, set as tabSet} from '../tab-manager';
 import {getUrlOrigin} from '../tab-util';
 import * as usercssMan from '../usercss-manager';
 import * as uswApi from '../usw-api';
+import {THEMER_ID, themerSection} from '../themer';
 import * as urlCache from './cache';
 import './init';
 import {onBeforeSave, onSaved} from './fixer';
 import {matchOverrides, urlMatchOverride, urlMatchSection} from './matcher';
 import {
-  broadcastStyleUpdated, calcRemoteId, getById, getByUuid, mergeWithMapped, order, orderWrap,
+  broadcastStyleUpdated, calcRemoteId, getById, getByUuid, hooks, mergeWithMapped, order, orderWrap,
   setOrderImpl, styleMap, stylePreviewMap, toggleSiteOvrImpl,
 } from './util';
 
@@ -261,9 +262,14 @@ export function getSectionsByUrl(url, {id, init, dark} = {}) {
   if (!v || maybe)
     urlCache.create(url, cache, maybe, tabOvr);
   urlCache.add(url, cache);
-  for (const sec of !id ? cache.values() : ((v = cache.get(id))) ? [v] : [])
+  for (const sec of !id || id === THEMER_ID ? cache.values() : ((v = cache.get(id))) ? [v] : [])
     if (tabOvr[sec.id] ?? !sec[kTabOvr])
       secsArr.push(sec);
+  // Themer's --themer-* variables, along with the styles that use them (all of them, or the one asked for);
+  // not cached, as `themer apply` changes them
+  v = themerSection(secsArr);
+  if (id === THEMER_ID) secsArr.length = 0;
+  if (v) secsArr.unshift(v);
   if (init === true && secsArr.length) {
     (td[kUrl] ??= {})[frameId] ??= url;
   }
@@ -294,6 +300,7 @@ export async function importMany(items) {
       const id = events[r];
       const isNew = !styleMap.has(id);
       const style = onSaved(styles[r], false, id);
+      hooks.saved?.(style, 'import'); // onSaved passed `false`, which the hook takes for an internal save
       messages.push([style, 'import', isNew]);
       res[i] = {
         style: getCore({id, sections: true, size: true}),
@@ -367,6 +374,7 @@ export function remove(id, reason, many) {
     method: 'styleDeleted',
     style: {id},
   });
+  hooks.removed?.(style, reason);
   return id;
 }
 

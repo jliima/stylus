@@ -23,6 +23,7 @@ import {inferHomepages} from './style-manager/fixer';
 import {styleMap} from './style-manager/util';
 import initStyleViaApi from './style-via-api';
 import './style-via-webrequest';
+import './themer';
 import * as syncMan from './sync-manager';
 import * as tabMan from './tab-manager';
 import {openEditor, openManager, openTab} from './tab-util';

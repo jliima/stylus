@@ -3,7 +3,7 @@ import {isEmptyObj, sleep} from '@/js/util';
 import * as syncMan from '../sync-manager';
 import {save} from '.';
 import {updateSections} from './cache';
-import {broadcastStyleUpdated, styleMap, storeInMap} from './util';
+import {broadcastStyleUpdated, hooks, styleMap, storeInMap} from './util';
 
 /** uuidv4 helper: converts to a 4-digit hex string and adds "-" at required positions */
 const hex4 = num => (num < 0x1000 ? num + 0x10000 : num).toString(16).slice(-4);
@@ -144,5 +144,6 @@ export function onSaved(style, reason, id = style.id, msg) {
   if (reason !== 'sync') {
     syncMan.putDoc(style);
   }
+  hooks.saved?.(style, reason);
   return style;
 }

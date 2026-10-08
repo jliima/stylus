@@ -1,5 +1,5 @@
 {
-  "name": "Stylus",
+  "name": "Stylus Themer",
   "version": "2.4.14",
   "minimum_chrome_version": "",
   "description": "__MSG_description__",
@@ -13,6 +13,7 @@
   },
   "permissions": [
     "alarms",
+    "nativeMessaging",
     "contextMenus",
     "storage",
     "tabs",
@@ -50,9 +51,9 @@
       "19": "icon/19w.png",
       "38": "icon/38w.png"
     },
-    "default_title": "Stylus",
+    "default_title": "Stylus Themer",
     "default_popup": "popup.html"
   },
   "default_locale": "en",
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2ypG+Z/beZtoYrxxwXYhMwQiAiwRVnSHqdpOSzJdjsXVWdvJjlgEuZcU8kte75w58P45LsRUrwvU6N9x12S6eW84KNEBC8rlZj0RGNoxuhSAcdxneYzjJ9tBkZKOidVedYHHsi3LeaXiLuTNTBR+2lf3uCNcP0ebaFML9uDLdYTGEW4eL3hnEKYPSmT1/xkh4bSGTToCg4YNuWWWoTA0beEOpBWYkPVMarLDQgPzMN5Byu5w3lOS2zL0PPJcmdyk3ez/ZsB4PZKU+h17fVA6+YTvUfxUqLde5i2RiuZhEb6Coo5/W90ZW1yCDC9osjWrxMGYeUMQWHPIgFtDhk4K6QIDAQAB"
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArwD3UBEdN9i1EnmFgu1Zm5aCBrgM88q2qbqmCjTpNuPPus7wdPQ+ecFCPEUUloSLiBNtXJbYGcYeuN9+ZWQ3jINFmffp83NCo9vzte4XENkgsmZcibDcAbHhliEqpysEWrHEvQ691XDzN5vIjEsSwmVfNzCoGDhPo0K2z79J5A33uyvg7AbpTTSXKkj/SzlzcQ+N9g/Gtdvg6qUDpvhSXOAYojULRZ88YSP+ZzAUO+jqM8E7e9HB9YboyxaOKK3yP/5LoeboUMJUK97KmDVbgnofVCIndBZ4ds1THANC1EfSzwch0Xfs9PoJX8Yc+cNrKebih0J5LJ0qD45pwcLaTwIDAQAB"
 }

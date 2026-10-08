@@ -10,6 +10,8 @@ import {updateSections} from './cache';
 
 /** @type {Map<number,StyleObj>} */
 export const styleMap = new Map();
+/** Listeners outside the style manager (Themer's styles folder): saved(style, reason), removed(style, reason) */
+export const hooks = {saved: null, removed: null};
 /** @type {Map<StyleObj,StyleObj>} */
 export const stylePreviewMap = new Map();
 

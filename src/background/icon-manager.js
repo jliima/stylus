@@ -91,7 +91,8 @@ export function updateIconBadge(styleIds, lazyBadge, iid) {
   // FIXME: in some cases, we only have to redraw the badge. is it worth a optimization?
   const {tab: {id: tabId}, TDM} = this.sender;
   const frameId = TDM > 0 ? 0 : this.sender.frameId;
-  const value = styleIds.length ? styleIds.map(Number) : undefined;
+  styleIds = styleIds.map(Number).filter(id => id > 0); // not Themer's variables (THEMER_ID)
+  const value = styleIds.length ? styleIds : undefined;
   if (tabId == null)
     return;
   tabSet(tabId, kStyleIds, frameId, value);
